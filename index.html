@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <script type="module" src="src/index.js"></script>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <h1>Arcana Auth: AWS Cognito Login with Custom UI!</h1>
+    <div>
+      <div class="title_style">
+        <p style="padding: 1rem;">
+          This simple HTML/CSS/JS Web3 app example to demonstrate how a Web3 app can use custom login UI and allow user onboarding via AWS Cognito or passwordless.
+        </p>
+        <p style="padding: 1rem;">It uses 
+          <a
+            href="https://parceljs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Parcel</a
+          > bundler.
+        </p>
+
+        <div class="admonition">
+          <strong>Use model:</strong>
+          <br /><br /><p><ol><li>Log in via Cognito or passwordless. </li><li>Get information about the user, account, login status.</li><li>Perform wallet operations using the Arcana wallet UI</li><li>Logout</li></ol></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="function_category">
+      <hr>
+      <h2>Connect</h2>
+    
+	    <div class="function_container">
+	      <div class="functions">
+		      <button id="Btn-Cognito">Cognito</button>
+	      </div>
+	
+        <div class="functions">
+          <button id="Btn-Passwordless">Get Login Link</button>
+	      </div>
+	    </div>
+    <hr>
+    <h2>Get Info</h2>
+ 
+	    <div class="function_container">
+	      <div class="functions">
+		      <button id="Btn-GetAccounts">Get Accounts</button>
+	      </div>
+	      <div class="functions">
+		      <button id="Btn-GetUser">Get User Details</button>
+	      </div>
+	      <div class="functions">
+		      <button id="Btn-GetLoginStatus">Login Status</button>
+	      </div>
+      </div>
+
+    <hr>
+    <h2>Wallet Ops</h2>
+    
+	    <div class="function_container">
+	      <div class="functions">
+	        <button id="Btn-AddChain">Add Chain</button>
+	      </div>
+	      <div class="functions">
+	        <button id="Btn-SwitchChain">Switch Chain</button>
+	      </div>
+            </div>
+    <hr>
+    <h2>Disconnect</h2>
+    
+	    <div class="function_container">
+	      <div class="functions">
+	        <button id="Btn-Logout">Logout</button>
+	      </div>
+            </div>
+
+    </div>
+
+    <div class="result_style" id="result-container">
+      <strong>Result: </strong><span id="result"></span>
+    </div>
+  </body>
+</html>
