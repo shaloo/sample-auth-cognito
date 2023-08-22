@@ -2,11 +2,12 @@ import { AuthProvider } from "@arcana/auth";
 
 const auth = new AuthProvider("xar_dev_19527cdf585cd31d0bd06bfc1b008accea781404", {
   //required
-  network: "testnet", //defaults to 'testnet'
+  network: "dev", //defaults to 'testnet'
   //network: "mainnet", //defaults to 'testnet'
   position: "right", //defaults to right
   theme: "dark", //defaults to dark
   alwaysVisible: true, //defaults to true which is Full UI mode
+  compactConnectMode: true, //defaults to false
   chainConfig: {
     chainId: "80001", //defaults to CHAIN.ETHEREUM_MAINNET
     rpcUrl: "https://rpc.ankr.com/polygon_mumbai" //defaults to 'https://rpc.ankr.com/eth'
@@ -50,7 +51,7 @@ export async function connectPasswordless() {
     }
 }
 
-export async function connectCognitol() {
+export async function connectCognito() {
   try {
     await auth.loginWithSocial('aws');
     document.querySelector("#result").innerHTML =
@@ -135,7 +136,7 @@ async function switchChain() {
 
 initAuth();
 
-document.querySelector("#Btn-Cognito").addEventListener("click", () => { connectSocial('google'); });
+document.querySelector("#Btn-Cognito").addEventListener("click", () => { connectCognito(); });
 document.querySelector("#Btn-Passwordless").addEventListener("click", () => { connectPasswordless(); });
 document.querySelector("#Btn-GetAccounts").addEventListener("click", getAccounts);
 document.querySelector("#Btn-GetUser").addEventListener("click", getUser);
