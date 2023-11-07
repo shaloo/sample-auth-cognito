@@ -1,12 +1,11 @@
 import { AuthProvider } from "@arcana/auth";
 
-//const auth = new AuthProvider("xar_dev_19527cdf585cd31d0bd06bfc1b008accea781404", {
+let provider;
+
 const auth = new AuthProvider("xar_live_d7c88d9b033d100e4200d21a5c4897b896e60063", {
-    //required
-  //network: "dev", //defaults to 'testnet'
   network: "mainnet", //defaults to 'testnet'
   position: "right", //defaults to right
-  theme: "dark", //defaults to dark
+  theme: "light", //defaults to dark
   alwaysVisible: true, //defaults to true which is Full UI mode
   connectOptions: {
     compact: true
@@ -35,6 +34,7 @@ async function initAuth() {
   try {
     await auth.init();
     console.log("Init auth complete!");
+    provider = auth.getProvider();
     document.querySelector("#result").innerHTML =
       "Auth initialized. Now you can continue.";
     console.log({ provider });
