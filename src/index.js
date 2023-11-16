@@ -1,9 +1,13 @@
 import { AuthProvider } from "@arcana/auth";
 
 let provider;
+// get from eth_accounts
+let from = ''
 
-const auth = new AuthProvider("xar_live_d7c88d9b033d100e4200d21a5c4897b896e60063", {
-  network: "mainnet", //defaults to 'testnet'
+const auth = new AuthProvider(
+  //"xar_live_d7c88d9b033d100e4200d21a5c4897b896e60063", {
+  "xar_test_d24f70cd300823953dfa2a7f5b7c7c113356b1ad", {
+  //network: "mainnet", //defaults to 'testnet'
   position: "right", //defaults to right
   theme: "light", //defaults to dark
   alwaysVisible: true, //defaults to true which is Full UI mode
@@ -15,6 +19,28 @@ const auth = new AuthProvider("xar_live_d7c88d9b033d100e4200d21a5c4897b896e60063
     rpcUrl: "https://rpc.ankr.com/polygon_mumbai" //defaults to 'https://rpc.ankr.com/eth'
   }
 });
+
+async function signTransaction() {
+  try {
+    const sig = await provider.request({
+      method: 'eth_signTransaction',
+      params: [
+        {
+          from,
+          gasPrice: 0,
+          to: '0xE28F01Cf69f27Ee17e552bFDFB7ff301ca07e780',
+          value: '0x0de0b6b3a7640000',
+        },
+      ],
+    })
+    setResult(sig)
+    document.querySelector("#result").innerHTML =
+        "SignTransaction: Successful!";
+    console.log({ sig })
+  } catch (e) {
+      console.log({ e });
+  }
+}
 
 async function logout() {
   console.log("Requesting logout");
@@ -54,6 +80,16 @@ export async function connectPasswordless() {
     }
 }
 
+export async function connectCognitoPNP() {
+  try {
+    await auth.connect();
+    document.querySelector("#result").innerHTML =
+      "Cognito: User logged in successfully via PNP!";
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 export async function connectCognito() {
   try {
     await auth.loginWithSocial('aws');
@@ -69,6 +105,7 @@ async function getAccounts() {
   try {
     const accounts = await auth.provider.request({ method: "eth_accounts" });
     console.log({ accounts });
+    from = accounts[0];
     document.querySelector("#result").innerHTML = accounts[0];
   } catch (e) {
     console.log(e);
@@ -101,20 +138,18 @@ async function addChain() {
   try {
     await auth.provider.request({
       method: "wallet_addEthereumChain",
-      params: [
-        {
-          chainId: "8081",
-          chainName: "Shardeum Liberty 2.X",
-          blockExplorerUrls: ["https://explorer-liberty20.shardeum.org/"],
-          rpcUrls: ["https://liberty20.shardeum.org/"],
+      params: [{
+          chainId: "4002",
+          chainName: "Fantom Testnet",
+          blockExplorerUrls: ["https://testnet.ftmscan.com/"],
+          rpcUrls: ["https://rpc.testnet.fantom.network/"],
           nativeCurrency: {
-            symbol: "SHM"
+            symbol: "FTM",
           }
-        }
-      ]
+        }]
     });
     document.querySelector("#result").innerHTML =
-      "Shardeum chain added successfully!";
+      "Fantom FTM Testnet chain added successfully!";
   } catch (e) {
     console.log({ e });
   }
@@ -139,11 +174,13 @@ async function switchChain() {
 
 initAuth();
 
+document.querySelector("#Btn-CognitoPNP").addEventListener("click", () => { connectCognitoPNP(); });
 document.querySelector("#Btn-Cognito").addEventListener("click", () => { connectCognito(); });
 document.querySelector("#Btn-Passwordless").addEventListener("click", () => { connectPasswordless(); });
 document.querySelector("#Btn-GetAccounts").addEventListener("click", getAccounts);
 document.querySelector("#Btn-GetUser").addEventListener("click", getUser);
 document.querySelector("#Btn-GetLoginStatus").addEventListener("click", getLoginStatus);
+document.querySelector("#Btn-SignTxn").addEventListener("click", signTransaction);
 document.querySelector("#Btn-AddChain").addEventListener("click", addChain);
 document.querySelector("#Btn-SwitchChain").addEventListener("click", switchChain);
 document.querySelector("#Btn-Logout").addEventListener("click", logout);
