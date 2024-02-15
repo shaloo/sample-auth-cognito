@@ -6,8 +6,11 @@ let from = ''
 
 const auth = new AuthProvider(
   //"xar_live_d7c88d9b033d100e4200d21a5c4897b896e60063", {
-  "xar_test_d24f70cd300823953dfa2a7f5b7c7c113356b1ad", {
+  //"xar_test_d24f70cd300823953dfa2a7f5b7c7c113356b1ad", {
+  //"xar_live_9f3263ddc67c5b3f69f4dc9626820f046d0b0968", {
+  "xar_dev_16a17a73057230516a91163cbcc8a9fa7f1d6efc", {
   //network: "mainnet", //defaults to 'testnet'
+  network: "dev", //defaults to 'testnet'
   position: "right", //defaults to right
   theme: "light", //defaults to dark
   alwaysVisible: true, //defaults to true which is Full UI mode
