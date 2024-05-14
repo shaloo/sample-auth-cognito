@@ -4,22 +4,20 @@ let provider;
 // get from eth_accounts
 let from = ''
 
+
 const auth = new AuthProvider(
-  //"xar_live_d7c88d9b033d100e4200d21a5c4897b896e60063", {
-  //"xar_test_d24f70cd300823953dfa2a7f5b7c7c113356b1ad", {
-  //"xar_live_9f3263ddc67c5b3f69f4dc9626820f046d0b0968", {
-  "xar_dev_16a17a73057230516a91163cbcc8a9fa7f1d6efc", {
-  //network: "mainnet", //defaults to 'testnet'
-  network: "dev", //defaults to 'testnet'
+  "xar_dev_c2fb7be163754e57d384e24257ea2c8d2a5dd31a", {
+  network: "dev", //defaults to 'testnet', choose from 'testnet','mainnet' or 'dev'
+  //network: "testnet", //defaults to 'testnet'
   position: "right", //defaults to right
-  theme: "light", //defaults to dark
+  theme: "dark", //defaults to dark
   alwaysVisible: true, //defaults to true which is Full UI mode
   connectOptions: {
     compact: true
   },
   chainConfig: {
-    chainId: "80001", //defaults to CHAIN.ETHEREUM_MAINNET
-    rpcUrl: "https://rpc.ankr.com/polygon_mumbai" //defaults to 'https://rpc.ankr.com/eth'
+    chainId: "80002", //Polygon Amoy - chainId defaults to CHAIN.ETHEREUM_MAINNET
+    rpcUrl: "https://polygon-amoy-bor-rpc.publicnode.com" //defaults to 'https://rpc.ankr.com/eth'
   }
 });
 
